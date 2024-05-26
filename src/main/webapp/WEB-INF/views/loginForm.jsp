@@ -3,6 +3,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <%--    jquery(ajax)--%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <title>로그인 페이지</title>
     <style>
         .login .password {
@@ -92,3 +95,39 @@
 </div>
 </body>
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        //jquery 는 js를 쉽게 쓸 수 있도록 도와주는 라이브러리입니다. 대표적으로 $ 가 있음. head 밑에 jquery 사용을 위한 태그를 추가해놓았으니 참고해서 다른 파일에도 사용해 주세요.
+        // console.log("F12 를 눌러보세요. 디버깅 및 테스트용도로 사용");
+        // alert("이 기능은 alert 입니다. 로그인 실패시 java throw exception 사용하면 되어서 그런 알림까지는 구현할 필요 없습니다.");
+
+        //달러 안에 선택자를 넣어서 활용하시면 됩니다. #은 id .은 클래스 지정 문자 입니다. 가급적이면 유일한 컴포넌트는 html 에 id 속성 주고 사용
+        //ajax 는 백엔드와 통신하는 기능입니다.
+        //아래는 이벤트 함수지만, 페이지 열때 무조건 한번 실행하려면 그냥 바깥 맨위에 두면 되겠죠?
+
+        //html 태그로는 input(입력), button(버튼) 등 사용
+
+        $("#loginButton").click(function(){
+            $.ajax({
+                url: 'myServlet', // 자바 컨트롤러에 호출할 url
+                type: 'GET',
+                success: function(response) {
+                    $("#result").html(response);
+                },
+                error: function() {
+                    alert("AJAX 요청 중 오류 발생");
+                }
+            });
+        });
+
+        $("#yourButton").click(function(){
+            if(1==1){
+                alert("버튼이 눌렸네요!");
+            }
+        });
+
+
+
+    });
+</script>
