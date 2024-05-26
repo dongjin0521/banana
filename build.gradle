@@ -16,6 +16,9 @@ repositories {
 }
 
 dependencies {
+	//jsp 실시간 반영
+	implementation 'org.springframework.boot:spring-boot-devtools'
+
 	//mariaDb
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
