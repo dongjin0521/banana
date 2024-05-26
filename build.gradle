@@ -16,6 +16,9 @@ repositories {
 }
 
 dependencies {
+	//MyBatis
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+
 	//jsp 실시간 반영
 	implementation 'org.springframework.boot:spring-boot-devtools'
 
