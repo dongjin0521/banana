@@ -25,7 +25,9 @@
         $.ajax({
             type: "POST",
             url: "/delivery/getDeliveryList",
-            data: {/* Any additional parameters you want to send */},
+            data: {/* Any additional parameters you want to send */
+                loc1 : "대구"
+                },
             success: function(response) {
                 var productList = response;
                 console.log(productList);
