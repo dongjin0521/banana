@@ -11,6 +11,7 @@ import java.util.Map;
 public interface deliveryMapper {
     List<Map<String, Object>> list(Map<String, Object> paramMap);
 
+    int insertDeliveryList(Map<String, Object> paramMap);
 
 
 }

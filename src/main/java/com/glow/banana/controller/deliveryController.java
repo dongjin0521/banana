@@ -30,6 +30,22 @@ public class deliveryController {
         return deliveryService.getDeliveryList(paramMap);
     }
 
+    @RequestMapping(value = "/delivery/insertDeliveryList", method = RequestMethod.POST)
+    public @ResponseBody int insertDeliveryList(@RequestParam Map<String, String> allParams) {
+        Map<String, Object> paramMap = new HashMap<>(allParams);
+        // 앞단에서 지역 등 조건 필터링을 allParams 로 넘겨받음.
+        // 앞단에서 가져온 변수 이외에도 필요한 매개변수를 paramMap에 추가할 수 있습니다.
+        // 예: paramMap.put("key", "value");
+
+//        paramMap.put("userId","1");
+//        paramMap.put("loc1","대구");
+//        paramMap.put("loc2","북구");
+//        paramMap.put("title","제목임");
+//        paramMap.put("description","설명");
+
+        return deliveryService.insertDeliveryList(paramMap);
+    }
+
 
 
 //    public @ResponseBody String getDeliveryList(@RequestParam Map<String, String> allParams, Model model) {

@@ -17,4 +17,9 @@ public class deliveryService {
         List<Map<String, Object>> list =  deliveryMapper.list(paramMap);
         return list;
     }
+
+    public int insertDeliveryList(Map<String, Object> paramMap) {
+        int result =  deliveryMapper.insertDeliveryList(paramMap);
+        return result;
+    }
 }

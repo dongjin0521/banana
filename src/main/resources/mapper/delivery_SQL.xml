@@ -9,4 +9,25 @@
             AND loc1 = #{loc1}
         </if>
     </select>
+
+    <insert id="insertDeliveryList" parameterType="Map">
+        INSERT INTO delivery(
+        USER_ID,
+        LOC1,
+        LOC2,
+        TITLE,
+        DESCRIPTION,
+        POST_DATE
+        )VALUES(
+        #{userId},
+        #{loc1},
+        #{loc2},
+        #{title},
+        #{description},
+        now()
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        )
+    </insert>
 </mapper>
