@@ -20,4 +20,9 @@ public class homeController {
     public String deliveryAdd() {
         return "deliveryAdd";
     }
+
+    @GetMapping("/clickForm")
+    public String clickFrom(){
+        return "clickForm";
+    }
 }
