@@ -7,17 +7,52 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <style>
         /* Add your custom CSS styles here */
+        body {
+            display:grid;
+            grid-template-rows: 2fr 5fr 1fr;
+            grid-template-columns: 1fr;
+        }
+        .product_grid {
+            grid-row:2/3;
+        }
+
+        .search_box {
+            background: #DDCA24;
+            grid-row:1/2;
+            font-size:1vw;
+        }
         .product-card {
             /* Style for product card */
+        }
+        .font-DroidSans {
+            font-family: 'Droid Sans', sans-serif;
+        }
+
+        .menu_bar {
+            background:#DDCA24;
+            grid-row:3/4;
         }
     </style>
 </head>
 <body>
-<div class="ui grid">
+<div class="search_box">
+    <p class="font-DroidSans" style="color:white; font-weight:bold; font-size:3vw">바나나</p>
+    <label>검색<input type="search"></label>
+    <label for="big_location"></label>
+    <select id="big_location">
+        <option value="daegu">대구</option>
+    </select>
+    <label for="small_location"></label>
+    <select id="small_location">
+        <option value="none">지역선택</option>
+    </select>
+</div>
+<div class="ui grid product_grid">
     <div class="row" id="product-list">
         <!-- Product cards will be appended here -->
     </div>
 </div>
+<div class="menu_bar"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
