@@ -26,6 +26,20 @@
             display: flex;
             flex-direction: column;
             height: 800px;
+            min-width: 500px; /* 최소 너비 추가 */
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 7px 10px;
+            background-color: #ffffff;
+            color: #DDCA24;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
         }
         .post-image {
             width: 100%; /* 이미지 컨테이너의 너비를 꽉 채우도록 설정 */
@@ -84,8 +98,10 @@
             border: none;
             border-radius: 20px;
             cursor: pointer;
-            margin-top: auto; /* Push the button to the bottom */
-            align-self: center; /* Center the button horizontally */
+            margin-top: auto;
+            align-self: center;
+            font-weight: bold; /* 폰트 굵게 설정 */
+            font-size: 15px; /* 폰트 크기 설정 */
         }
         .user-info {
             display: flex;
@@ -113,6 +129,7 @@
             color: #4F4F4F;
         }
     </style>
+
 </head>
 <body>
 
@@ -144,7 +161,12 @@
 
     <!-- '채팅하기' 버튼 -->
     <a href="#" class="chat-button">채팅하기</a>
+
+    <!-- '뒤로가기' 버튼-->
+    <a href='javascript:history.back()' class="back-button">back</a>
 </div>
+
+
 
 
 <div id="deliveryList" data-id="${id}"></div>
