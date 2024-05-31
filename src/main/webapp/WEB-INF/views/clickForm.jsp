@@ -146,14 +146,18 @@
     <a href="#" class="chat-button">채팅하기</a>
 </div>
 
+
+<div id="deliveryList" data-id="${id}"></div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
+        var postId = $("#deliveryList").data("id");
         $.ajax({
             type: "POST",
             url: "/delivery/getDeliveryList",
             data: {/* Any additional parameters you want to send */
-                id : "1" //게시글 primary key
+                id : postId  //게시글 primary key
             },
             success: function(response) {
                 var productList = response;

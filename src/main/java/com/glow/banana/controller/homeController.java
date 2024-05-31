@@ -1,7 +1,9 @@
 package com.glow.banana.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class homeController {
@@ -22,7 +24,8 @@ public class homeController {
     }
 
     @GetMapping("/clickForm")
-    public String clickFrom(){
+    public String clickFrom(@RequestParam(name = "id", required = false) String id, Model model) {
+        model.addAttribute("id", id);
         return "clickForm";
     }
 }

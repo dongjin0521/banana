@@ -69,11 +69,13 @@
                 // Loop through the product list and generate HTML for each product card
                 productList.forEach(function(product) {
                     var productCardHtml = '<div class="four wide column product-card">';
+                    productCardHtml += '<div id='+product["id"]+' class=item>';
                     productCardHtml += '<div class="ui card">';
                     productCardHtml += '<div class="content">';
                     productCardHtml += '<div class="header">' + product["title"] + '</div>';
                     productCardHtml += '<div class="description">' + product["description"] + '</div>';
                     productCardHtml += '<div class="meta">' + product["loc1"] + " "  + product["loc2"] + '</div>';
+                    productCardHtml += '</div>';
                     productCardHtml += '</div>';
                     productCardHtml += '</div>';
                     productCardHtml += '</div>';
@@ -84,6 +86,12 @@
             error: function(xhr, status, error) {
                 console.error("ajax 호출 error 발생");
             }
+        });
+
+        $(document).on('click', '.item', function() {
+            //동적으로 생성된 객체에는 on 사용
+            console.log("눌린 게시글 key: " + this.id);
+            window.location.href = 'clickForm?id=' + this.id;
         });
     });
 </script>
