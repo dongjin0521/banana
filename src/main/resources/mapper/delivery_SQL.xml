@@ -8,6 +8,9 @@
         <if test="loc1 != null and loc1 != ''">
             AND loc1 = #{loc1}
         </if>
+        <if test="id != null and id != ''">
+            AND id = #{id}
+        </if>
     </select>
 
     <insert id="insertDeliveryList" parameterType="Map">

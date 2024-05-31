@@ -122,10 +122,10 @@
 
     <!-- 게시물 제목과 남은 시간, 위치 정보 -->
     <div class="post-info">
-        <div class="post-title-text" id="postTitle">유통기한 내일까지인 콜라 나눔해요</div>
+        <div class="post-title-text" id="title"></div>
         <div class="post-details">
             <span class="post-remaining-time" id="remainingTime">2일남음</span>
-            <div class="post-location" id="location">대현동 00원룸</div>
+            <span class="post-location" id="loc"></span>
         </div>
     </div>
 
@@ -133,15 +133,39 @@
     <div class="user-info">
         <div class="user-details">
             <img class="user-avatar" src="../assets/vectors/icon_avataravatar_2_x2.svg" />
-            <div id="authorName" class="user-name">송희준</div>
+            <span id="userId" class="user-name"></span>
         </div>
     </div>
 
     <!-- 게시자 글 내용 -->
     <div class="post-content">
-        <p id="postContent">게시자가 올린 글 내용이 여기에 들어갑니다.</p>
+        <p id="description"></p>
     </div>
 
     <!-- '채팅하기' 버튼 -->
     <a href="#" class="chat-button">채팅하기</a>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            type: "POST",
+            url: "/delivery/getDeliveryList",
+            data: {/* Any additional parameters you want to send */
+                id : "1" //게시글 primary key
+            },
+            success: function(response) {
+                var productList = response;
+                console.log(productList[0]);
+                $("#title").text(productList[0].title);
+                $("#loc").text(productList[0].loc1 +" "+ productList[0].loc2);
+                $("#userId").text(productList[0].user_id);
+                $("#description").text(productList[0].description);
+            },
+            error: function(xhr, status, error) {
+                console.error("ajax 호출 error 발생");
+            }
+        });
+    });
+</script>
