@@ -1,5 +1,7 @@
 package com.glow.banana.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.apache.ibatis.binding.MapperMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
@@ -21,7 +23,16 @@ public class deliveryController {
     @Autowired
     private deliveryService deliveryService;
     @RequestMapping(value = "/delivery/getDeliveryList", method = RequestMethod.POST)
-    public @ResponseBody List<Map<String, Object>> getDeliveryList(@RequestParam Map<String, String> allParams) {
+    public @ResponseBody List<Map<String, Object>> getDeliveryList(@RequestParam Map<String, String> allParams, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String userId = (String) session.getAttribute("userId");
+
+        if (userId != null) {
+            System.out.println("logged in. userId: "+userId);
+        } else {
+            System.out.println("No user is logged in");
+        }
+
         Map<String, Object> paramMap = new HashMap<>(allParams);
         // 앞단에서 지역 등 조건 필터링을 allParams 로 넘겨받음.
         // 앞단에서 가져온 변수 이외에도 필요한 매개변수를 paramMap에 추가할 수 있습니다.
@@ -31,11 +42,17 @@ public class deliveryController {
     }
 
     @RequestMapping(value = "/delivery/insertDeliveryList", method = RequestMethod.POST)
-    public @ResponseBody int insertDeliveryList(@RequestParam Map<String, String> allParams) {
+    public @ResponseBody int insertDeliveryList(@RequestParam Map<String, String> allParams, HttpServletRequest request) {
         Map<String, Object> paramMap = new HashMap<>(allParams);
-        // 앞단에서 지역 등 조건 필터링을 allParams 로 넘겨받음.
-        // 앞단에서 가져온 변수 이외에도 필요한 매개변수를 paramMap에 추가할 수 있습니다.
-        // 예: paramMap.put("key", "value");
+        HttpSession session = request.getSession();
+        String userId = (String) session.getAttribute("userId");
+
+        if (userId != null) {
+            System.out.println("logged in. userId: "+userId);
+            paramMap.put("userId",userId);
+        } else {
+            return 0;
+        }
 
 //        paramMap.put("userId","1");
 //        paramMap.put("loc1","대구");

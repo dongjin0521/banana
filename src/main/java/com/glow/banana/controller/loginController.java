@@ -1,6 +1,7 @@
 package com.glow.banana.controller;
 
 import com.glow.banana.service.loginService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,9 +27,29 @@ public class loginController {
     }
 
     @RequestMapping(value = "/login/Login", method = RequestMethod.POST)
-    public @ResponseBody String Login(@RequestParam Map<String, String> allParams) {
+    public @ResponseBody String Login(@RequestParam Map<String, String> allParams, HttpServletRequest request) {
         Map<String, Object> paramMap = new HashMap<>(allParams);
-        return loginService.Login(paramMap);
+        String userId = loginService.Login(paramMap);
+
+        if (userId != null && !userId.isEmpty()) {
+            HttpSession session = request.getSession();
+            session.setAttribute("userId", userId);
+            return userId;
+        } else {
+            return null;
+        }
+    }
+
+    @RequestMapping(value = "login/logout", method = RequestMethod.POST)
+    public @ResponseBody String logout(HttpServletRequest request) {
+        //아직 제대로 로그아웃이 안됨.
+        HttpSession session = request.getSession(false); // false to avoid creating a new session if one doesn't exist
+        if (session != null) {
+            session.invalidate();
+            return "Logout successful";
+        } else {
+            return "No user is logged in";
+        }
     }
 
 
