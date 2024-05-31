@@ -151,17 +151,20 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $("#loginButton").click(function(){
-            var id = $("#id").val();
-            var password = $("#password").val();
             $.ajax({
-                url: '/myServlet',
-                type: 'GET',
+                url: '/login/Login',
+                type: 'POST',
                 data: {
-                    id: id,
-                    password: password
+                    id: $("#id").val(),
+                    password: $("#password").val()
                 },
                 success: function(response) {
-                    $("#result").html(response);
+                    console.log(response);
+                    if(response!="" && response!= null){
+                        alert("로그인 성공!");
+                    }else{
+                        alert("로그인 실패. 아이디 또는 비밀번호를 다시 확인하세요.")
+                    }
                 },
                 error: function() {
                     alert("AJAX 요청 중 오류 발생");
