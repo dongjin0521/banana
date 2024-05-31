@@ -15,15 +15,15 @@ public class loginController {
     @Autowired
     private loginService loginService;
 
-    @RequestMapping(value = "/login/insertAccount", method = RequestMethod.POST)
-    public @ResponseBody int insertAccount(@RequestParam Map<String, String> allParams) {
+    @RequestMapping(value = "/login/addUser", method = RequestMethod.POST)
+    public @ResponseBody int addUser(@RequestParam Map<String, String> allParams) {
         Map<String, Object> paramMap = new HashMap<>(allParams);
         // 앞단에서 지역 등 조건 필터링을 allParams 로 넘겨받음.
         // 앞단에서 가져온 변수 이외에도 필요한 매개변수를 paramMap에 추가할 수 있습니다.
         // 예: paramMap.put("key", "value");
 
 
-        return loginService.insertAccount(paramMap);
+        return loginService.addUser(paramMap);
     }
 
     @RequestMapping(value = "/login/Login", method = RequestMethod.POST)

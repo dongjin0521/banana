@@ -11,7 +11,7 @@ import java.util.Map;
 @Mapper
 public interface loginMapper {
 
-    int insertAccount(Map<String, Object> paramMap);
+    int addUser(Map<String, Object> paramMap);
 
     String Login(Map<String, Object> paramMap);
 

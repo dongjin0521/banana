@@ -121,6 +121,22 @@
         바나나에 오신것을 환영합니다.
     </div>
 
+    <!-- 이름 가입 필드  -->
+    <div class="rounded-24 border-white box-sizing-border login-field userName">
+        <input type="text" id="userName" placeholder="username">
+    </div>
+
+    <!-- 주소1 가입 필드  -->
+    <div class="rounded-24 border-white box-sizing-border login-field loc1">
+        <input type="text" id="loc1" placeholder="도시">
+    </div>
+
+    <!-- 주소2 가입 필드  -->
+    <div class="rounded-24 border-white box-sizing-border login-field loc2">
+        <input type="text" id="loc2" placeholder="구">
+    </div>
+
+
     <!-- ID 입력 필드  -->
     <div class="rounded-24 border-white box-sizing-border login-field">
         <input type="text" id="id" placeholder="ID">
@@ -138,11 +154,15 @@
         </span>
     </div>
 
-    <div class="font-DroidSans font-normal text-18 text-white" style="margin-top: 20px;">
-        비밀번호를 잊으셨나요?
-    </div>
+<%--    <div class="font-DroidSans font-normal text-18 text-white" style="margin-top: 20px;">--%>
+<%--        비밀번호를 잊으셨나요?--%>
+<%--    </div>--%>
     <span class="break-words font-DroidSans font-semibold text-18 text-white" style="margin-top: 10px;">
-        회원가입
+        <button id="joinButton" style="background: transparent;border: transparent">회원가입</button>
+    </span>
+
+    <span class="break-words font-DroidSans font-semibold text-18 text-white addUser" style="margin-top: 10px;">
+        <button id="addUser" style="background: transparent;border: transparent">등록</button>
     </span>
 </div>
 </body>
@@ -150,6 +170,12 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+
+        $(".userName").hide();
+        $(".addUser").hide();
+        $(".loc1").hide();
+        $(".loc2").hide();
+
         $("#loginButton").click(function(){
             $.ajax({
                 url: '/login/Login',
@@ -165,6 +191,41 @@
                         window.location.href = "deliveryForm";
                     }else{
                         alert("로그인 실패. 아이디 또는 비밀번호를 다시 확인하세요.")
+                    }
+                },
+                error: function() {
+                    alert("AJAX 요청 중 오류 발생");
+                }
+            });
+        });
+
+        $("#joinButton").click(function(){
+            $(".userName").show();
+            $("#joinButton").hide();
+            $("#loginButton").hide();
+            $(".addUser").show();
+            $(".loc1").show();
+            $(".loc2").show();
+        });
+
+        $("#addUser").click(function(){
+            $.ajax({
+                url: '/login/addUser',
+                type: 'POST',
+                data: {
+                    loc1: $("#loc1").val(),
+                    loc2: $("#loc2").val(),
+                    userName: $("#userName").val(),
+                    id: $("#id").val(),
+                    password: $("#password").val()
+                },
+                success: function(response) {
+                    console.log(response);
+                    if(response!="" && response!= null){
+                        alert("회원가입 성공! 새로 로그인해주세요.");
+                        window.location.href = "loginForm";
+                    }else{
+                        alert("회원가입 실패. 아이디 중복 또는 빈 항목이 없는지 확인하세요.")
                     }
                 },
                 error: function() {

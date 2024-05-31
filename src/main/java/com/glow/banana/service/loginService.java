@@ -10,8 +10,8 @@ import java.util.Map;
 public class loginService {
     @Autowired
     loginMapper loginMapper;
-    public int insertAccount(Map<String, Object> paramMap) {
-        int result =  loginMapper.insertAccount(paramMap);
+    public int addUser(Map<String, Object> paramMap) {
+        int result =  loginMapper.addUser(paramMap);
         return result;
     }
 

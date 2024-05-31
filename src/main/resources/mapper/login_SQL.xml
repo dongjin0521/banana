@@ -4,11 +4,15 @@
 <mapper namespace="com.glow.banana.mapper.loginMapper">
 
 
-    <insert id="insertAccount" parameterType="Map">
-        INSERT INTO account(
-
+    <insert id="addUser" parameterType="Map">
+        INSERT INTO user(
+            name,
+                    id,
+                         password,
+                         loc1,
+                         loc2
         )VALUES(
-        #{name},
+        #{userName},
         #{id},
         #{password},
         #{loc1},
