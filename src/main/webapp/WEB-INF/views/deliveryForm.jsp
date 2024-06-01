@@ -292,7 +292,7 @@
         window.location.href = 'deliveryAdd';
     });
 
-    $('moveHome').click(function () {
+    $('#moveHome').click(function () {
         console.log("ChatForm로 이동");
         window.location.href = 'chatForm'
     });
