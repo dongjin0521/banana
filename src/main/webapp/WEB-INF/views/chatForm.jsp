@@ -128,11 +128,12 @@
     </style>
 </head>
 <body>
+<div id="chatList" data-id="${id}"></div>
 <div class="container">
-    <button class="post-button" onclick="window.location.href='/clickForm'">
+    <button class="post-button" onclick="window.location.href='/clickForm?id=${id}'">
         <i class="fa-solid fa-arrow-up"></i>
         <div class="content">
-            <div class="title">Return</div>
+            <div class="title">게시글 보기</div>
         </div>
     </button>
     <div class="chat-box" id="chatBox">
@@ -149,7 +150,6 @@
 </div>
 </body>
 
-<div id="chatList" data-id="${id}"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
