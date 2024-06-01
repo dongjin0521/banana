@@ -129,7 +129,7 @@
                 });
             },
             error: function(xhr, status, error) {
-                console.error("ajax 호출 error 발생");
+                console.error("ajax 호출 error 발생함.");
             }
         });
     });
