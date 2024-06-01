@@ -251,7 +251,7 @@
                     var productCardHtml = '<div class="product-card item" id="' + product["id"] + '" >';
                     productCardHtml += '<img class="delivery-img" src="/image/' + product["img_name"] + '" alt="' + product["title"] + '">';
                     productCardHtml += '<div class="header"><p>' + product["title"] + '</p></div>';
-                    productCardHtml += '<div class="description">' + product["description"] + '</div>';
+                    // productCardHtml += '<div class="description">' + product["description"] + '</div>';
                     productCardHtml += '<div class="meta">' + product["loc1"] + " "  + product["loc2"] + '</div>';
                     productCardHtml += '</div>';
 
