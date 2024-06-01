@@ -47,7 +47,7 @@
     </div>
     <input class ="answer" id="description" type="text" placeholder="내용을 입력하세요">
 
-    <button id="submit">등록</button>
+    <div id="submit" role="button" class="submitButton">등록</div>
 
 </div>
 <script type="text/javascript">
@@ -146,16 +146,39 @@
         justify-content: center;
         align-items: center;
         height: 100%;
-        border-radius: 20px;
         border: 1px solid #000; /* 얇은 테두리 */
-
+        text-align: left;
     }
     .inputText{
+        width: 100%;
         display: grid;
+        grid-template-rows: repeat(9, 1fr) 4fr 2fr;
         place-items: center;
-
+        text-align: left;
+        grid-gap: 1rem;
     }
 
+    .inputText div {
+        text-align: left;
+    }
+    .inputText input {
+        width: 100%;
+        border-bottom: 1px solid black;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+    }
+
+    .inputText .submitButton {
+        width: 100%;
+        height: 100%;
+        background-color: #DDCA24;
+        color: white;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 10vh;
+    }
 </style>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
