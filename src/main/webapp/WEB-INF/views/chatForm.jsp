@@ -127,7 +127,7 @@
                 if (chatList.length > 0) {
                     chatList.forEach(function(chat) {
                         var chatItemHtml = '<div class="chat-item">';
-                        chatItemHtml += '<div class="username">' + chat["username"] + '</div>';
+                        chatItemHtml += '<div class="username">' + chat["userId"] + '</div>';
                         chatItemHtml += '<div class="message">' + chat["message"] + '</div>';
                         chatItemHtml += '</div>';
                         $('#chatBox').append(chatItemHtml);
