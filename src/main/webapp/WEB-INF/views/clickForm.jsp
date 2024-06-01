@@ -148,7 +148,7 @@
         </div>
     </div>
 
-    <!-- 게시자 정보 -->
+    <!-- 게시자 정보임 -->
     <div class="user-info">
         <div class="user-details">
             <i class="fa-solid fa-user" style="font-size: 1.5rem;margin-right: 10px;margin-top: 5px"></i>
