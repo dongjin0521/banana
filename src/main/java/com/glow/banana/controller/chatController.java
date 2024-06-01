@@ -28,13 +28,33 @@ public class chatController {
 
         if (userId != null) {
             System.out.println("logged in. userId: "+userId);
+            //임시
+            paramMap.put("productId","1");
             paramMap.put("userId",userId);
+            paramMap.put("type","D");
         } else {
             return 0;
         }
 
 
         return chatService.insertChat(paramMap);
+    }
+
+    @RequestMapping(value = "/chat/getChat", method = RequestMethod.POST)
+    public @ResponseBody List<Map<String, Object>> getChat(@RequestParam Map<String, String> allParams, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String userId = (String) session.getAttribute("userId");
+
+        if (userId != null) {
+            System.out.println("logged in. userId: "+userId);
+        } else {
+            System.out.println("No user is logged in");
+        }
+
+        Map<String, Object> paramMap = new HashMap<>(allParams);
+
+
+        return chatService.getChat(paramMap);
     }
 
     @RequestMapping(value = "/chat/getChatAll", method = RequestMethod.POST)

@@ -9,5 +9,7 @@ import java.util.Map;
 public interface chatMapper {
     int insertChat(Map<String, Object> paramMap);
 
+    List<Map<String, Object>> getChat(Map<String, Object> paramMap);
+
     List<Map<String, Object>> getChatAll(Map<String, Object> paramMap);
 }

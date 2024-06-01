@@ -20,13 +20,13 @@
     <insert id="insertChat" parameterType="Map">
         INSERT INTO chat(
         productId,
-        buyerId,
+        userId,
         type,
         message,
         send_date
         )VALUES(
         #{productId},
-        #{buyerId},
+        #{userId},
         #{type},
         #{message},
         now()

@@ -170,35 +170,63 @@
         <div class="title" id="detailTitle"></div>
         <div class="username" id="detailUsername"></div>
     </div>
+
+    //임시
+    <div id="testArea"></div>
+
+
     <div class="comment-section">
         <div class="comment-form">
             <input type="text" id="commentInput" placeholder="댓글을 입력하세요">
-            <button onclick="addComment()">등록</button>
+            <button id="submit">등록</button>
         </div>
     </div>
     <!-- '뒤로가기' 버튼-->
     <a href='javascript:history.back()' class="back-button">back</a>
 </div>
 </body>
-<script>
-    function showDetails(img, title, username) {
-        document.getElementById('detailImg').src = img;
-        document.getElementById('detailTitle').innerText = title;
-        document.getElementById('detailUsername').innerText = username;
-        document.getElementById('details').style.display = 'flex';
-    }
 
-    function addComment() {
-        var commentInput = document.getElementById('commentInput');
-        var commentText = commentInput.value.trim();
-        if (commentText !== '') {
-            var commentSection = document.querySelector('.comment-section');
-            var newComment = document.createElement('div');
-            newComment.classList.add('comment-item');
-            newComment.innerHTML = '<div class="content"><div class="comment">' + commentText + '</div></div>';
-            commentSection.insertBefore(newComment, commentSection.lastElementChild);
-            commentInput.value = '';
-        }
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.ajax({
+                type: "POST",
+                url: "/chat/getChat",
+                data: {/* Any additional parameters you want to send */
+                    productId : '1'
+                },
+                success: function(response) {
+                    var chatList = response;
+                    console.log(chatList);
+                    // Loop through the product list and generate HTML for each product card
+                    chatList.forEach(function(product) {
+                        var chatListHtml = '<span>' + product["message"];
+                        chatListHtml += '</span>';
+
+                        $('#testArea').append(chatListHtml);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error("ajax 호출 error 발생");
+                }
+            });
+        });
+
+
+        $("#submit").on("click",function() {
+        $.ajax({
+        type: "POST",
+        url: "/chat/insertChat",
+        data: {/* Any additional parameters you want to send */
+            message : $("#commentInput").val()
+    },
+        success: function(response) {
+
+    },
+        error: function(xhr, status, error) {
+        console.error("ajax 호출 error 발생");
     }
+    });
+    });
 </script>
 </html>

@@ -20,6 +20,11 @@ public class chatService {
         return result;
     }
 
+    public List<Map<String, Object>> getChat(Map<String, Object> paramMap) {
+        List<Map<String, Object>> list =  chatMapper.getChat(paramMap);
+        return list;
+    }
+
     public List<Map<String, Object>> getChatAll(Map<String, Object> paramMap) {
         List<Map<String, Object>> list =  chatMapper.getChatAll(paramMap);
         return list;
