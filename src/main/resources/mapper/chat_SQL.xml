@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glow.banana.mapper.chatMapper">
+    <select id="getChatAll"  parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM chat
+        WHERE 1=1
+        <if test="test != null and test != ''">
+            AND buyerId = #{test}
+        </if>
+
+    </select>
+
+    <select id="getChat"  parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM chat
+        WHERE 1=1
+        AND productId = #{productId}
+    </select>
+
+    <insert id="insertChat" parameterType="Map">
+        INSERT INTO chat(
+        productId,
+        buyerId,
+        type,
+        message,
+        send_date
+        )VALUES(
+        #{productId},
+        #{buyerId},
+        #{type},
+        #{message},
+        now()
+        <selectKey keyProperty="productId" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        )
+    </insert>
+</mapper>

@@ -181,9 +181,35 @@
     </div>
 </div>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    function navigateToChat(url) {
-        window.location.href = url;
-    }
+    $(document).ready(function() {
+        $.ajax({
+            type: "POST",
+            url: "/chat/getChatAll",
+            data: {/* Any additional parameters you want to send */
+
+            },
+            success: function(response) {
+                var productList = response;
+                console.log(productList);
+                // Loop through the product list and generate HTML for each product card
+                productList.forEach(function(product) {
+                    var productCardHtml = '<div class="product-card item" id="' + product["id"] + '" >';
+                    productCardHtml += '<img class="delivery-img" src="' + product["image"] + '" alt="' + product["title"] + '">';
+                    productCardHtml += '<div class="header"><p>' + product["title"] + '</p></div>';
+                    productCardHtml += '<div class="description">' + product["description"] + '</div>';
+                    productCardHtml += '<div class="meta">' + product["loc1"] + " "  + product["loc2"] + " " + product["name"] + '</div>';
+                    productCardHtml += '</div>';
+
+                    $('#product-list').append(productCardHtml);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error("ajax 호출 error 발생");
+            }
+        });
+    });
 </script>
 </html>
