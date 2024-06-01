@@ -293,7 +293,7 @@
     });
 
     $('#moveHome').click(function () {
-        console.log("ChatForm로 이동");
-        window.location.href = 'chatForm'
+        console.log("ChatList로 이동");
+        window.location.href = 'chatList'
     });
 </script>
