@@ -38,4 +38,9 @@ public class homeController {
     public String chatForm(){
         return "chatForm";
     }
+
+    @GetMapping("/userInformation")
+    public String userInformation(){
+        return "userInformation";
+    }
 }
