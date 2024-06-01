@@ -1,5 +1,6 @@
 package com.glow.banana.controller;
 
+import com.glow.banana.service.PhotoService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.apache.ibatis.binding.MapperMethod;
@@ -13,15 +14,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import static java.lang.Thread.sleep;
+
 @Controller
 public class deliveryController {
     @Autowired
     private deliveryService deliveryService;
+    @Autowired
+    private PhotoService photoService;
     @RequestMapping(value = "/delivery/getDeliveryList", method = RequestMethod.POST)
     public @ResponseBody List<Map<String, Object>> getDeliveryList(@RequestParam Map<String, String> allParams, HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -40,9 +49,9 @@ public class deliveryController {
 
         return deliveryService.getDeliveryList(paramMap);
     }
-
+    //,@RequestParam("file") MultipartFile file
     @RequestMapping(value = "/delivery/insertDeliveryList", method = RequestMethod.POST)
-    public @ResponseBody int insertDeliveryList(@RequestParam Map<String, String> allParams, HttpServletRequest request) {
+    public @ResponseBody int insertDeliveryList(@RequestParam Map<String, String> allParams, HttpServletRequest request,@RequestParam("file") MultipartFile file) {
         Map<String, Object> paramMap = new HashMap<>(allParams);
         HttpSession session = request.getSession();
         String userId = (String) session.getAttribute("userId");
@@ -54,11 +63,27 @@ public class deliveryController {
             return 0;
         }
 
-//        paramMap.put("userId","1");
-//        paramMap.put("loc1","대구");
-//        paramMap.put("loc2","북구");
-//        paramMap.put("title","제목임");
-//        paramMap.put("description","설명");
+        String originalFileName = file.getOriginalFilename();
+
+        String fileType = file.getContentType();
+        String fileExtension = "";
+        String imageName = UUID.randomUUID().toString() + fileExtension;
+        paramMap.put("imgName", imageName);
+
+
+        try {
+            photoService.savePhoto(file,imageName);
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+//        paramMap.put("description","설명")
+////        paramMap.put("userId","1");
+////        paramMap.put("loc1","대구");
+////        paramMap.put("loc2","북구");
+////        paramMap.put("title","제목임");;
 
         return deliveryService.insertDeliveryList(paramMap);
     }
