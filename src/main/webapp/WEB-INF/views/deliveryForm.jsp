@@ -64,7 +64,6 @@
             border: none;
             border-radius: 5px;
             font-size: 20px;
-            cursor: pointer;
         }
 
         .search_box {
@@ -127,7 +126,9 @@
             grid-row:2/3;
             grid-column: 1/2;
             overflow-y: scroll;
+            border-top: #DDCA24 2px solid;
         }
+
         .product-card {
             /* Style for product card */
             display: grid;
@@ -216,7 +217,7 @@
     </div>
 </div>
 <div class="menu_bar">
-    <button id="moveHome"><i class="fa-solid fa-house" style="font-size: 2rem; color: white; text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;"></i></button>
+    <button id="moveChat"><i class="fa-solid fa-house" style="font-size: 2rem; color: white; text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;"></i></button>
     <button id="moveDelivery"><i class="fa-solid fa-motorcycle" style="font-size: 2rem; color: white; text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;"></i></button>
     <button id="moveShare"><i class="fa-solid fa-basket-shopping" style="font-size: 2rem; color: white; text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;"></i></button>
     <button id="moveMyPage"><i class="fa-solid fa-user" style="font-size: 2rem; color: white; text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;"></i></button>
@@ -307,9 +308,9 @@
         window.location.href = 'shareForm';
     });
 
-    $('#moveMyPage').click(function() {
-        console.log("userInformation으로 이동");
-        window.location.href = 'userInformation';
+    $('#moveChat').click(function() {
+        console.log("ChatList으로 이동");
+        window.location.href = 'chatList';
     });
 
     $('#moveDeliveryAdd').click(function() {
@@ -317,8 +318,8 @@
         window.location.href = 'deliveryAdd';
     });
 
-    $('#moveHome').click(function () {
-        console.log("ChatList로 이동");
-        window.location.href = 'chatList';
+    $('#moveMyPage').click(function () {
+        console.log("userInformation로 이동");
+        window.location.href = 'userInformation';
     });
 </script>
