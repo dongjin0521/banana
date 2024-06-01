@@ -10,41 +10,68 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <style>
         body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #DDCA24;
+            overflow-y: hidden;
+        }
+
+        .container {
             display: grid;
             grid-template-rows: 3fr 10fr 2fr;
             margin: 0;
             padding: 0;
             font-family: 'Droid Sans', sans-serif;
-            height: 100vh;
             grid-template-columns: 1fr;
-            grid-gap: 1rem;
-            overflow-y: hidden;
+            max-width: 1000px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+            height: 800px;
+            min-width: 500px; /* 최소 너비 추가 */
+            max-height: 700px; /* 최대 높이 추가 */
         }
 
+        .container > div {
+            margin: 5px;
+        }
         .search_grid {
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: #DDCA24;
+            background: white;
             grid-row: 1/2;
             grid-column: 1/2;
             z-index: 1000;
             position: sticky;
+            border-radius: 10px 10px 0 0;
+            padding-top: 15px;
         }
 
-        .search_title {
-            color: white;
-            font-weight: bold;
-            font-size: 3rem;
-            align-self: flex-start;
-            margin: 0 0 0 2rem;
+        .title_icon {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 7px 10px;
+            background-color: #ffffff;
+            color: #DDCA24;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
         }
 
         .search_box {
             display: flex;
             align-items: center;
             width: 80%;
-            background: white;
+            background: #DDCA24;
             border-radius: 25px;
             padding: 1rem;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -57,28 +84,45 @@
             padding: 0.5rem;
             font-size: 1em;
             border-radius: 25px;
-        }
+            background: #DDCA24;
+            background-clip: border-box;
 
-        .location_select {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
         }
 
         .location_select select {
             border: none;
             outline: none;
-            padding: 1em;
-            font-size: 1em;
+            padding: 0.8rem;
+            font-size: 1rem;
             border-radius: 25px;
             margin-right: 1.5rem;
-            background: white;
+            background: #DDCA24;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .search_box label {
             display: none;
         }
+
+        .action_buttons {
+            display: flex;
+            justify-content: space-around; /* 공간을 고르게 분배 */
+            width: 80%; /* 버튼 그룹의 너비 */
+            margin-top: 1rem; /* 상단 여백 추가 */
+        }
+
+        .action_buttons select,
+        .action_buttons input {
+            flex: 1; /* 버튼과 선택 박스가 균등하게 공간을 차지하도록 설정 */
+            margin: 0 0.5rem; /* 좌우 여백 */
+            height: 3rem;
+            background: darkgrey;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: white;
+            border: none;
+        }
+
         .product_grid {
             grid-row:2/3;
             grid-column: 1/2;
@@ -91,11 +135,10 @@
             grid-template-rows: 9fr 3fr 1fr 1fr;
             border: solid 1px black;
             border-radius: 10px;
-            width: 80vw;
-            height: 50vh;
+            width: 90%;
+            height: 80%;
         }
         .menu_bar {
-            background-color: #DDCA24;
             grid-row: 3/4;
             grid-column: 1/2;
             position: sticky;
@@ -103,14 +146,13 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: 1fr;
+            border-radius: 0 0 10px 10px;
         }
 
-        .menu_bar .img-button {
-            background: url("img/moveDelivery-removebg-preview.png") no-repeat;
-            width: 100%;
-            height: 100%;
+        .menu_bar button {
+            border-radius: 35px;
+            background-clip: border-box;
         }
-
         .product-card .delivery-img {
             grid-row:1/2;
             border-bottom: solid 1px black;
@@ -141,17 +183,17 @@
     </style>
 </head>
 <body>
+<p class="title_icon font-DroidSans">바나나</p>
+<div class="container">
 <div class="search_grid">
-    <p class="search_title font-DroidSans">바나나</p>
     <div class="search_box">
         <label for="search" class="visually-hidden">검색</label>
-        <input type="search" id="search" placeholder="지금 먹고 싶은 음식이 있나요?">
-        <button id="search-button" type="button" style="background: none; border: none;">
-            <i class="search icon"></i>
+        <input type="search" id="search">
+        <button id="search-button" type="button" style="border: none; background: #DDCA24">
+            <i class="search icon" style="color: white;"></i>
         </button>
     </div>
-    <div class="location_select">
-        <label for="big_location" class="visually-hidden"></label>
+    <div class="action_buttons">
         <select id="big_location">
             <option value="대구">대구</option>
             <!-- Add more options as needed -->
@@ -169,9 +211,8 @@
             <option value="달성군">달성군</option>
             <!-- Add more options as needed -->
         </select>
+        <input type="button" id="moveDeliveryAdd" value="글쓰기">
     </div>
-    <label for="search" class="visually-hidden"></label>
-    <input type="button" id="moveDeliveryAdd" style="width: 30%; height: 10%; background: white; border-radius: 15px; border: none; border-bottom: black 0.1rem solid" value="글 쓰기">
 </div>
 <div class="product_grid">
     <div style="display:grid; grid-template-columns: 1fr; place-items: center; column-gap: 1rem" class="row" id="product-list">
@@ -179,10 +220,11 @@
     </div>
 </div>
 <div class="menu_bar">
-    <button id="moveHome"><i class="fa-solid fa-house" style="font-size: 1.5rem"></i></button>
-    <button id="moveDelivery"><i class="fa-solid fa-motorcycle" style="font-size: 1.5rem"></i></button>
-    <button id="moveShare"><i class="fa-solid fa-basket-shopping" style="font-size: 1.5rem"></i></button>
-    <button id="moveMyPage"><i class="fa-solid fa-user" style="font-size: 1.5rem"></i></button>
+    <button id="moveHome"><i class="fa-solid fa-house" style="font-size: 2rem; color: white; text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;"></i></button>
+    <button id="moveDelivery"><i class="fa-solid fa-motorcycle" style="font-size: 2rem; color: white; text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;"></i></button>
+    <button id="moveShare"><i class="fa-solid fa-basket-shopping" style="font-size: 2rem; color: white; text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;"></i></button>
+    <button id="moveMyPage"><i class="fa-solid fa-user" style="font-size: 2rem; color: white; text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;"></i></button>
+</div>
 </div>
 </body>
 </html>
@@ -217,23 +259,6 @@
             },
             error: function(xhr, status, error) {
                 console.error("ajax 호출 error 발생");
-            }
-        });
-    });
-
-    $('#big_location').change(function() {
-        var selectedValue = $(this).val();
-        $.ajax({
-            url: 'https://example.com/api/location',
-            type: 'GET',
-            dataType: 'json',
-            data: { loc1: selectedValue },
-            success: function(response) {
-                console.log(response);
-
-            },
-            error: function(xhr, status, error) {
-                console.error('Error: ' + error);
             }
         });
     });
@@ -298,6 +323,6 @@
 
     $('#moveHome').click(function () {
         console.log("ChatList로 이동");
-        window.location.href = 'chatList'
+        window.location.href = 'chatList';
     });
 </script>
