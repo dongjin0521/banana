@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
+<script src="https://kit.fontawesome.com/2f8ed7d291.js" crossorigin="anonymous"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -124,6 +125,14 @@
         .product-card .despcription {
             font-size: 1rem;
         }
+
+        .menu_bar button {
+            background: #DDCA24;
+            border-left: 0.5rem solid white;
+            border-right: 0.5rem solid white;
+            border-top: none;
+            border-bottom: none;
+        }
     </style>
 </head>
 <body>
@@ -163,10 +172,10 @@
     </div>
 </div>
 <div class="menu_bar">
-    <input type="button" class="img-button">
-    <input type="button" class="img-button">
-    <input type="button" class="img-button">
-    <input type="button" class="img-button">
+    <button id="moveHome"><i class="fa-solid fa-house" style="font-size: 1.5rem"></i></button>
+    <button id="moveDelivery"><i class="fa-solid fa-motorcycle" style="font-size: 1.5rem"></i></button>
+    <button id="moveShare"><i class="fa-solid fa-basket-shopping" style="font-size: 1.5rem"></i></button>
+    <button id="moveMyPage"><i class="fa-solid fa-user" style="font-size: 1.5rem"></i></button>
 </div>
 </body>
 </html>
