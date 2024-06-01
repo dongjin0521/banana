@@ -28,4 +28,9 @@ public class homeController {
         model.addAttribute("id", id);
         return "clickForm";
     }
+
+    @GetMapping("/chatList")
+    public String chatList(){
+        return "chatList";
+    }
 }
