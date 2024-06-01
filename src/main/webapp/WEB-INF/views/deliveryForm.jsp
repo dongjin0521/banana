@@ -134,6 +134,10 @@
             border-top: none;
             border-bottom: none;
         }
+        .delivery-img{
+            width: 300px;
+            height: 200px;
+        }
     </style>
 </head>
 <body>
@@ -202,7 +206,7 @@
                 // Loop through the product list and generate HTML for each product card
                 productList.forEach(function(product) {
                     var productCardHtml = '<div class="product-card item" id="' + product["id"] + '" >';
-                    productCardHtml += '<img class="delivery-img" src="' + product["image"] + '" alt="' + product["title"] + '">';
+                    productCardHtml += '<img class="delivery-img" src="/image/' + product["img_name"] + '" alt="' + product["title"] + '">';
                     productCardHtml += '<div class="header"><p>' + product["title"] + '</p></div>';
                     productCardHtml += '<div class="description">' + product["description"] + '</div>';
                     productCardHtml += '<div class="meta">' + product["loc1"] + " "  + product["loc2"] + '</div>';
@@ -250,7 +254,7 @@
                 // Loop through the product list and generate HTML for each product card
                 productList.forEach(function(product) {
                     var productCardHtml = '<div class="product-card item" id="' + product["id"] + '" >';
-                    productCardHtml += '<img class="delivery-img" src="' + product["image"] + '" alt="' + product["title"] + '">';
+                    productCardHtml += '<img class="delivery-img" src="/image/' + product["img_name"] + '" alt="' + product["title"] + '">';
                     productCardHtml += '<div class="header"><p>' + product["title"] + '</p></div>';
                     productCardHtml += '<div class="description">' + product["description"] + '</div>';
                     productCardHtml += '<div class="meta">' + product["loc1"] + " "  + product["loc2"] + '</div>';
