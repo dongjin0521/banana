@@ -27,6 +27,7 @@
             flex-direction: column;
             height: 800px;
             min-width: 500px; /* 최소 너비 추가 */
+            max-height: 700px; /* 최대 높이 추가 */
         }
         .back-button {
             position: absolute;
