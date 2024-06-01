@@ -115,51 +115,58 @@
 <script type="text/javascript">
     var productId = $("#chatList").data("id");
     $(document).ready(function() {
-        $.ajax({
-            type: "POST",
-            url: "/chat/getChat",
-            data: {
-                id: productId
-            },
-            success: function(response) {
-                var chatList = response;
-                console.log(chatList);
-                if (chatList.length > 0) {
-                    chatList.forEach(function(chat) {
-                        var chatItemHtml = '<div class="chat-item">';
-                        chatItemHtml += '<div class="username">' + chat["userId"] + '</div>';
-                        chatItemHtml += '<div class="message">' + chat["message"] + '</div>';
-                        chatItemHtml += '</div>';
-                        $('#chatBox').append(chatItemHtml);
-                    });
-                } else {
-                    $('#chatBox').append('<div class="chat-item"><div class="message">채팅 내용이 없습니다.</div></div>');
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error("ajax 호출 error 발생");
-            }
-        });
-    });
-
-    $("#submit").on("click", function() {
-        var message = $("#commentInput").val();
-        if (message.trim() !== "") {
+        function loadChat() {
             $.ajax({
                 type: "POST",
-                url: "/chat/insertChat",
+                url: "/chat/getChat",
                 data: {
-                    message : message,
-                    productId : productId
+                    id: productId
                 },
                 success: function(response) {
-                    location.reload();
+                    var chatList = response;
+                    console.log(chatList);
+                    $('#chatBox').empty(); // 기존 채팅 내용 비우기
+                    if (chatList.length > 0) {
+                        chatList.forEach(function(chat) {
+                            var chatItemHtml = '<div class="chat-item">';
+                            chatItemHtml += '<div class="username">' + chat["userId"] + '</div>';
+                            chatItemHtml += '<div class="message">' + chat["message"] + '</div>';
+                            chatItemHtml += '</div>';
+                            $('#chatBox').append(chatItemHtml);
+                        });
+                    } else {
+                        $('#chatBox').append('<div class="chat-item"><div class="message">채팅 내용이 없습니다.</div></div>');
+                    }
                 },
                 error: function(xhr, status, error) {
                     console.error("ajax 호출 error 발생");
                 }
             });
         }
+
+        loadChat(); // 페이지 로드 시 처음 한번 실행
+        setInterval(loadChat, 5000); // 5초마다 새로고침
+
+        $("#submit").on("click", function() {
+            var message = $("#commentInput").val();
+            if (message.trim() !== "") {
+                $.ajax({
+                    type: "POST",
+                    url: "/chat/insertChat",
+                    data: {
+                        message : message,
+                        productId : productId
+                    },
+                    success: function(response) {
+                        $("#commentInput").val(''); // 입력 필드 비우기
+                        loadChat(); // 채팅 내용을 즉시 업데이트
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("ajax 호출 error 발생");
+                    }
+                });
+            }
+        });
     });
 </script>
 </html>
