@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glow.banana.mapper.shareMapper">
+    <select id="list"  parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM share
+        WHERE 1=1
+        <if test="loc1 != null and loc1 != ''">
+            AND loc1 = #{loc1}
+        </if>
+        <if test="loc2 != null and loc2 != ''">
+            AND loc2 = #{loc2}
+        </if>
+        <if test="id != null and id != ''">
+            AND id = #{id}
+        </if>
+        <if test="title != null and title != ''">
+            AND title LIKE CONCAT('%', #{title}, '%')
+        </if>
+    </select>
+
+    <insert id="insertshareList" parameterType="Map">
+        INSERT INTO share(
+        USER_ID,
+        LOC1,
+        LOC2,
+        TITLE,
+        DESCRIPTION,
+        POST_DATE,
+        IMG_NAME
+        )VALUES(
+        #{userId},
+        #{loc1},
+        #{loc2},
+        #{title},
+        #{description},
+        now(),
+        #{imgName}
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        )
+    </insert>
+</mapper>

@@ -7,11 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class homeController {
-
-    @GetMapping("/")
-    public String home() {
-        return "loginForm";
-    }
     @GetMapping("/loginForm")
     public String loginForm() {
         return "loginForm";
