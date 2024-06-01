@@ -9,14 +9,16 @@
 <body>
 <div class ="topSide">
     <span class="tradly">
-        상품 추가
+        게시글 추가
     </span>
 
 </div>
 
 <div class="potoContainer">
     <div class="add-photos">
-        Add photos
+        <div class ="quest" style="font-size: 20px">
+            사진 추가
+        </div>
         <form method="post" enctype="multipart/form-data" action="/upload">
             <input type="file" name="file" id="fileInput" accept="image/*" />
             <%--            <button type="submit">Upload</button>--%>
@@ -35,13 +37,13 @@
 
     <input class ="answer" id="price" type="text" >
 
-    <div class ="quest">
+    <div class ="quest" style="margin-top: 20px">
         위치
     </div>
-    <select id="loc1">
+    <select id="loc1" style="margin-bottom: 10px;border-radius: 30px;width: 200px;height: 30px;text-align: center">
         <option value="대구">대구</option>
     </select>
-    <select id="loc2">
+    <select id="loc2" style="margin-bottom: 10px;border-radius: 30px;width: 200px;height: 30px;text-align: center">
         <option value="">지역선택</option>
         <option value="중구">중구</option>
         <option value="동구">동구</option>
@@ -56,8 +58,8 @@
         글내용
     </div>
 
-    <textarea class ="answer2" id="description" type="text" name="content" rows="4" cols="200"></textarea>
-    <button id="submit">등록</button>
+    <textarea class ="answer2" id="description" type="text" name="content" rows="4" cols="200" style="border-radius: 5px"></textarea>
+    <button id="submit" style="margin-top: 10px;width: 200px;height: 40px;border-radius: 30px;background-color: #DDCA24;border-color: transparent;font-size: 20px">등록</button>
 
 </div>
 <script type="text/javascript">
@@ -171,7 +173,7 @@
         overflow-wrap: break-word;
         font-family: 'Montserrat';
         font-weight: 600;
-        font-size: 14px;
+        font-size: 20px;
         letter-spacing: 0.4px;
         line-height: 2;
         justify-content: center;
@@ -189,18 +191,19 @@
         overflow-wrap: break-word;
         font-family: 'Montserrat';
         font-weight: 400;
-        font-size: 14px;
+        font-size: 20px;
         line-height: 1.143;
         color: #4F4F4F;
         margin-bottom: 10px;
         margin-top: 10px;
+        text-align: center;
     }
 
     .answer {
         overflow-wrap: break-word;
         font-family: 'Montserrat';
         font-weight: 500;
-        font-size: 16px;
+        font-size: 20px;
         line-height: 1.5;
         color: #333A42;
         display: flex;
@@ -215,7 +218,7 @@
         overflow-wrap: break-word;
         font-family: 'Montserrat';
         font-weight: 500;
-        font-size: 16px;
+        font-size: 20px;
         line-height: 1.5;
         color: #333A42;
         display: flex;
