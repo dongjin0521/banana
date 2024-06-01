@@ -201,7 +201,7 @@
                     // Loop through the product list and generate HTML for each product card
                     chatList.forEach(function(product) {
                         var chatListHtml = '<span>' + product["message"];
-                        chatListHtml += '</span>';
+                        chatListHtml += '</span><br/>';
 
                         $('#testArea').append(chatListHtml);
                     });
