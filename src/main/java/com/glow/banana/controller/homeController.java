@@ -17,6 +17,11 @@ public class homeController {
         return "deliveryForm";
     }
 
+    @GetMapping("/shareForm")
+    public String shareForm() {
+        return "shareForm";
+    }
+
 
     @GetMapping("/deliveryAdd")
     public String deliveryAdd() {
