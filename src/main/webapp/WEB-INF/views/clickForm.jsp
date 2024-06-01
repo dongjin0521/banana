@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/2f8ed7d291.js" crossorigin="anonymous"></script>
     <title>게시물 클릭 페이지</title>
     <style>
         body {
@@ -147,10 +148,10 @@
         </div>
     </div>
 
-    <!-- 게시자 정보 -->
+    <!-- 게시자 정보임 -->
     <div class="user-info">
         <div class="user-details">
-            <img class="user-avatar" src="../assets/vectors/icon_avataravatar_2_x2.svg" />
+            <i class="fa-solid fa-user" style="font-size: 1.5rem;margin-right: 10px;margin-top: 5px"></i>
             <span id="userId" class="user-name"></span>
         </div>
     </div>

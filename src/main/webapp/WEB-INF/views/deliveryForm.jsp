@@ -204,7 +204,7 @@
                     productCardHtml += '<img class="delivery-img" src="' + product["image"] + '" alt="' + product["title"] + '">';
                     productCardHtml += '<div class="header"><p>' + product["title"] + '</p></div>';
                     productCardHtml += '<div class="description">' + product["description"] + '</div>';
-                    productCardHtml += '<div class="meta">' + product["loc1"] + " "  + product["loc2"] + " " + product["name"] + '</div>';
+                    productCardHtml += '<div class="meta">' + product["loc1"] + " "  + product["loc2"] + '</div>';
                     productCardHtml += '</div>';
 
                     $('#product-list').append(productCardHtml);
@@ -252,7 +252,7 @@
                     productCardHtml += '<img class="delivery-img" src="' + product["image"] + '" alt="' + product["title"] + '">';
                     productCardHtml += '<div class="header"><p>' + product["title"] + '</p></div>';
                     productCardHtml += '<div class="description">' + product["description"] + '</div>';
-                    productCardHtml += '<div class="meta">' + product["loc1"] + " "  + product["loc2"] + " " + product["name"] + '</div>';
+                    productCardHtml += '<div class="meta">' + product["loc1"] + " "  + product["loc2"] + '</div>';
                     productCardHtml += '</div>';
 
                     $('#product-list').append(productCardHtml);
