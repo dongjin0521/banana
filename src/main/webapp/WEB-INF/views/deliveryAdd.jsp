@@ -20,7 +20,7 @@
         <form method="post" enctype="multipart/form-data" action="/upload">
             <input type="file" name="file" id="fileInput" accept="image/*" />
             <%--            <button type="submit">Upload</button>--%>
-            <button type="button" onclick="uploadFile()">Upload</button>
+
         </form>
         <div id="imageContainer"></div>
     </div>
@@ -88,7 +88,7 @@
             processData: false,
             contentType: false,
             success: function(response) {
-                alert("ff");
+
             },
             error: function(xhr, status, error) {
                 console.error("ajax 호출 error 발생");
