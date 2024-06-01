@@ -11,7 +11,7 @@
     <select id="getChat"  parameterType="java.util.Map" resultType="java.util.Map">
         SELECT * FROM chat
         WHERE 1=1
-        AND productId = #{productId}
+        AND productId = #{id}
     </select>
 
     <insert id="insertChat" parameterType="Map">
