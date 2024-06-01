@@ -33,4 +33,9 @@ public class homeController {
     public String chatList(){
         return "chatList";
     }
+
+    @GetMapping("/chatForm")
+    public String chatForm(){
+        return "chatForm";
+    }
 }
