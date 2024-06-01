@@ -11,7 +11,7 @@
     <style>
         body {
             display: grid;
-            grid-template-rows: 4fr 9fr 2fr;
+            grid-template-rows: 3fr 10fr 2fr;
             margin: 0;
             padding: 0;
             font-family: 'Droid Sans', sans-serif;
@@ -294,5 +294,5 @@
     $('moveHome').click(function () {
         console.log("ChatLisg로 이동");
         window.location.href = 'chatList'
-    }
+    });
 </script>
