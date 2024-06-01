@@ -142,7 +142,7 @@
 
                 $('.chat-item').on('click', function() {
                     var chatId = $(this).data('chat-id');
-                    alert($(this).data('chat-id'))
+
                     window.location.href = 'chatForm?id=' + chatId;
                 });
             },
