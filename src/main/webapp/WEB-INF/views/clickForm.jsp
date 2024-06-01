@@ -134,7 +134,7 @@
 </head>
 <body>
 <div class="container">
-    <img src="post-image.jpg" alt="게시물 이미지" class="post-image">
+    <div id="imageArea"></div>
     <div class="post-info">
         <div class="post-title-text" id="title"></div>
         <div class="post-details">
@@ -174,6 +174,9 @@
                 $("#userId").text(productList[0].user_id);
                 $("#description").text(productList[0].description);
 
+
+                var productCardHtml = '<img  width="400px" height="300px"  src="/image/' + productList[0].img_name +'"/>';
+                $('#imageArea').append(productCardHtml);
                 // 채팅 페이지 URL 설정
                 var chatFormURL = "/chatForm?id=" + postId; // 예시 URL
                 $("#chatButton").attr("href", chatFormURL);

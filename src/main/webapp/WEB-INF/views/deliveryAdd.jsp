@@ -35,7 +35,7 @@
         제목
     </div>
 
-    <input class ="answer" id="price" type="text" >
+    <input class ="answer" id="title" type="text" >
 
     <div class ="quest" style="margin-top: 20px">
         위치
