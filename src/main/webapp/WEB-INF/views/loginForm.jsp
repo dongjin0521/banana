@@ -53,23 +53,11 @@
         .font-medium {
             font-weight: 500;
         }
-        .font-normal {
-            font-weight: 400;
-        }
         .font-semibold {
             font-weight: 600;
         }
         .text-18 {
             font-size: 18px;
-        }
-        .text-24 {
-            font-size: 24px;
-        }
-        .login-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px; /* 전체 폼의 위치 조정 */
         }
         .login-field {
             margin-top: 40px; /* 각 필드 간의 간격 조정 */

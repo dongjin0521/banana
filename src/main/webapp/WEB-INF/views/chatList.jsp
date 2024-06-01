@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
+<script src="https://kit.fontawesome.com/d07e833750.js" crossorigin="anonymous"></script>
 <head>
     <title>채팅 리스트</title>
     <style>
@@ -28,11 +29,12 @@
         }
         .header {
             background-color: #ffffff;
-            padding: 54px 16px 33px;
+            padding: 24px 16px 10px;
             color: #000000;
             font-weight: bold;
             font-size: 24px;
             margin-bottom: 8px;
+            border-bottom: 2px solid #DDCA24; /* 경계선 추가 */
         }
         .chat-item {
             box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.052);
@@ -80,7 +82,9 @@
 <body>
 <div class="container">
     <div class="header">
-        채팅목록</div>
+        <i class="fas fa-align-justify"></i>
+        채팅목록
+    </div>
     <div class="scrollable">
         <div class="chat-item">
             <img src="images/rectangle_298.jpeg" alt="프로필 이미지">
@@ -170,14 +174,6 @@
             </div>
             <div class="button" onclick="navigateToChat('chatDetail.jsp?id=3')"></div>
         </div>
-        <div class="chat-item">
-            <img src="images/rectangle_298.jpeg" alt="프로필 이미지">
-            <div class="content">
-                <div class="title">냉동식품 ~24/7 해외출장 나눔합니다.</div>
-                <div class="username">정해찬</div>
-            </div>
-            <div class="button" onclick="navigateToChat('chatDetail.jsp?id=3')"></div>
-        </div>
     </div>
 </div>
 </body>
@@ -189,7 +185,6 @@
             type: "POST",
             url: "/chat/getChatAll",
             data: {/* Any additional parameters you want to send */
-
             },
             success: function(response) {
                 var productList = response;
