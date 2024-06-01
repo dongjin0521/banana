@@ -79,6 +79,9 @@
 </html>
 
 <style>
+    body {
+        width: 100vw;
+    }
     .topSide {
         background: #DDCA24;
         position: relative;
@@ -89,6 +92,8 @@
         width: 100%;
         height: 150px;
         box-sizing: border-box;
+        border-radius: 15px 15px 0px 0px;
+        place-items: center;
     }
     .tradly {
         overflow-wrap: break-word;
@@ -97,6 +102,7 @@
         font-size: 24px;
         text-align: center;
         color: #FFFFFF;
+        line-height: 100px;
     }
 
     .potoContainer{
@@ -104,7 +110,9 @@
         display: flex;
         flex-direction: row;
         box-sizing: border-box;
-        background: darkblue;
+        background: beige;
+        border: #DDCA24 solid 2px;
+        border-radius: 15px;
     }
 
     .add-photos {
@@ -178,6 +186,7 @@
         font-size: 1.5rem;
         font-weight: 600;
         line-height: 10vh;
+        border-radius: 0 0 15px 15px;
     }
 </style>
 

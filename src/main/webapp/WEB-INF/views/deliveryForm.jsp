@@ -10,7 +10,7 @@
     <style>
         body {
             display: grid;
-            grid-template-rows: 4fr 10fr 1fr;
+            grid-template-rows: 4fr 9fr 2fr;
             margin: 0;
             padding: 0;
             font-family: 'Droid Sans', sans-serif;
@@ -98,6 +98,15 @@
             grid-column: 1/2;
             position: sticky;
             z-index: 1000;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 1fr;
+        }
+
+        .menu_bar .img-button {
+            background: url("img/moveDelivery-removebg-preview.png") no-repeat;
+            width: 100%;
+            height: 100%;
         }
 
         .product-card .delivery-img {
@@ -145,7 +154,12 @@
         <!-- Product cards will be appended here -->
     </div>
 </div>
-<div class="menu_bar"></div>
+<div class="menu_bar">
+    <input type="button" class="img-button">
+    <input type="button" class="img-button">
+    <input type="button" class="img-button">
+    <input type="button" class="img-button">
+</div>
 </body>
 </html>
 
