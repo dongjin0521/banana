@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
+<script src="https://kit.fontawesome.com/d07e833750.js" crossorigin="anonymous"></script>
 <html>
 <head>
-    <title>채팅 리스트</title>
+    <title>채팅</title>
     <style>
         body {
             margin: 0;
@@ -23,8 +24,8 @@
             display: flex;
             flex-direction: column;
             height: 800px;
-            min-width: 500px;
-            max-height: 700px;
+            min-width: 500px; /* 최소 너비 추가 */
+            max-height: 700px; /* 최대 높이 추가 */
         }
         .back-button {
             position: absolute;
@@ -39,13 +40,46 @@
             font-size: 20px;
             cursor: pointer;
         }
+        .post-button {
+            background-color: #ffffff;
+            padding: 14px 16px;
+            color: #000000;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 8px;
+            border: 2px solid #DDCA24;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            text-align: left;
+        }
+        .post-button img {
+            width: 37px;
+            height: 37px;
+            border-radius: 5px;
+        }
+        .post-button .content {
+            flex: 1;
+            margin-left: 10px;
+        }
+        .post-button .content .title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #212121;
+            margin-bottom: 3px;
+        }
+        .post-button .content .username {
+            font-size: 14px;
+            font-weight: bold;
+            color: #DDCA24;
+        }
         .chat-box {
             box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.052);
             border-radius: 8px;
             background-color: #FFFFFF;
-            margin-bottom: 6px;
             padding: 14px 16px;
-            height: 100%;
+            height: calc(100% - 150px); /* Adjust based on post button and padding */
             overflow-y: auto; /* 스크롤바 추가 */
         }
         .chat-item {
@@ -95,6 +129,12 @@
 </head>
 <body>
 <div class="container">
+    <button class="post-button" onclick="window.location.href='/clickForm'">
+        <i class="fa-solid fa-arrow-up"></i>
+        <div class="content">
+            <div class="title">Return</div>
+        </div>
+    </button>
     <div class="chat-box" id="chatBox">
         <!-- 채팅 아이템은 여기 추가됩니다 -->
     </div>
