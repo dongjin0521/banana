@@ -65,6 +65,12 @@
 <script type="text/javascript">
     $("#submit").on("click",function() {
         var formData = new FormData();
+        var fileInput = document.getElementById('fileInput');
+        if (fileInput.files.length === 0) {
+            alert('이미지를 선택하세요.');
+            event.preventDefault();
+            return;
+        }
         formData.append("file", document.getElementById("fileInput").files[0]);
         formData.append("title",$("#title").val());
         formData.append("categortProduct",$("#categoryProduct").val());
@@ -90,6 +96,8 @@
             processData: false,
             contentType: false,
             success: function(response) {
+                alert("등록되었습니다");
+                window.location.href='deliveryForm'
 
             },
             error: function(xhr, status, error) {
