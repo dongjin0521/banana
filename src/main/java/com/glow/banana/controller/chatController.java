@@ -29,7 +29,6 @@ public class chatController {
         if (userId != null) {
             System.out.println("logged in. userId: "+userId);
             //임시
-            paramMap.put("productId","1");
             paramMap.put("userId",userId);
             paramMap.put("type","D");
         } else {

@@ -148,15 +148,12 @@
             $.ajax({
                 type: "POST",
                 url: "/chat/insertChat",
-                data: { message: message },
+                data: {
+                    message : message,
+                    productId : productId
+                },
                 success: function(response) {
-                    // 새로운 메시지 추가
-                    var chatItemHtml = '<div class="chat-item">';
-                    chatItemHtml += '<div class="username">나</div>';
-                    chatItemHtml += '<div class="message">' + message + '</div>';
-                    chatItemHtml += '</div>';
-                    $('#chatBox').append(chatItemHtml);
-                    $("#commentInput").val('');
+                    location.reload();
                 },
                 error: function(xhr, status, error) {
                     console.error("ajax 호출 error 발생");
