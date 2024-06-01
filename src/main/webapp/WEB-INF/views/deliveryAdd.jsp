@@ -44,7 +44,7 @@
         <option value="대구">대구</option>
     </select>
     <select id="loc2" style="margin-bottom: 10px;border-radius: 30px;width: 200px;height: 30px;text-align: center">
-        <option value="">지역선택</option>
+
         <option value="중구">중구</option>
         <option value="동구">동구</option>
         <option value="서구">서구</option>
