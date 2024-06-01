@@ -27,8 +27,8 @@
             display: flex;
             flex-direction: column;
             height: 800px;
-            min-width: 500px; /* 최소 너비 추가 */
-            max-height: 700px; /* 최대 높이 추가 */
+            min-width: 500px;
+            max-height: 700px;
         }
         .back-button {
             position: absolute;
@@ -44,9 +44,9 @@
             cursor: pointer;
         }
         .post-image {
-            width: 100%; /* 이미지 컨테이너의 너비를 꽉 채우도록 설정 */
-            height: 100%; /* 이미지 컨테이너의 높이를 꽉 채우도록 설정 */
-            object-fit: cover; /* 이미지를 늘리거나 줄여 부모 요소에 맞게 조정 */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             max-height: 25vh;
             border-radius: 10px 10px 0 0;
         }
@@ -87,7 +87,7 @@
             padding: 50px;
             background-color: #ffffff;
             flex-grow: 1;
-            max-height: calc(50vh - 280px); /* 컨테이너 높이의 절반에서 나머지 요소의 높이를 뺀 만큼의 최대 높이 */
+            max-height: calc(50vh - 280px);
         }
         .chat-button {
             display: block;
@@ -102,8 +102,8 @@
             cursor: pointer;
             margin-top: auto;
             align-self: center;
-            font-weight: bold; /* 폰트 굵게 설정 */
-            font-size: 15px; /* 폰트 크기 설정 */
+            font-weight: bold;
+            font-size: 15px;
         }
         .user-info {
             display: flex;
@@ -131,15 +131,10 @@
             color: #4F4F4F;
         }
     </style>
-
 </head>
 <body>
-
 <div class="container">
-    <!-- 상단에 해당 게시물의 이미지 -->
     <img src="post-image.jpg" alt="게시물 이미지" class="post-image">
-
-    <!-- 게시물 제목과 남은 시간, 위치 정보 -->
     <div class="post-info">
         <div class="post-title-text" id="title"></div>
         <div class="post-details">
@@ -147,30 +142,18 @@
             <span class="post-location" id="loc"></span>
         </div>
     </div>
-
-    <!-- 게시자 정보임 -->
     <div class="user-info">
         <div class="user-details">
             <i class="fa-solid fa-user" style="font-size: 1.5rem;margin-right: 10px;margin-top: 5px"></i>
             <span id="userId" class="user-name"></span>
         </div>
     </div>
-
-    <!-- 게시자 글 내용 -->
     <div class="post-content">
         <p id="description"></p>
     </div>
-
-    <!-- '채팅하기' 버튼 -->
-    <a href="#" class="chat-button">채팅하기</a>
-
-    <!-- '뒤로가기' 버튼-->
+    <a href="#" class="chat-button" id="chatButton">채팅하기</a>
     <a href='javascript:history.back()' class="back-button">back</a>
 </div>
-
-
-
-
 <div id="deliveryList" data-id="${id}"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -180,16 +163,20 @@
         $.ajax({
             type: "POST",
             url: "/delivery/getDeliveryList",
-            data: {/* Any additional parameters you want to send */
-                id : postId  //게시글 primary key
+            data: {
+                id : postId
             },
             success: function(response) {
                 var productList = response;
                 console.log(productList[0]);
                 $("#title").text(productList[0].title);
-                $("#loc").text(productList[0].loc1 +" "+ productList[0].loc2);
+                $("#loc").text(productList[0].loc1 + " " + productList[0].loc2);
                 $("#userId").text(productList[0].user_id);
                 $("#description").text(productList[0].description);
+
+                // 채팅 페이지 URL 설정
+                var chatFormURL = "/chatForm?id=" + postId; // 예시 URL
+                $("#chatButton").attr("href", chatFormURL);
             },
             error: function(xhr, status, error) {
                 console.error("ajax 호출 error 발생");
@@ -197,3 +184,5 @@
         });
     });
 </script>
+</body>
+</html>
