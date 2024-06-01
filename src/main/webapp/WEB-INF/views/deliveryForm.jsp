@@ -165,6 +165,8 @@
             <!-- Add more options as needed -->
         </select>
     </div>
+    <label for="search" class="visually-hidden"></label>
+    <input type="button" id="moveDeliveryAdd" style="width: 30%; height: 10%; background: white; border-radius: 15px; border: none; border-bottom: black 0.1rem solid" value="글 쓰기">
 </div>
 <div class="product_grid">
     <div style="display:grid; grid-template-columns: 1fr; place-items: center; column-gap: 1rem" class="row" id="product-list">
@@ -269,4 +271,28 @@
         window.location.href = 'clickForm?id=' + this.id;
     });
 
+    $('#moveDelivery').click(function() {
+        console.log("deliveryForm으로 이동");
+        window.location.href = 'deliveryForm';
+    });
+
+    $('#moveShare').click(function() {
+        console.log("share으로 이동");
+        window.location.href = 'shareForm';
+    });
+
+    $('#moveMyPage').click(function() {
+        console.log("userInformation으로 이동");
+        window.location.href = 'userInformation';
+    });
+
+    $('#moveDeliveryAdd').click(function() {
+        console.log("deliveryAdd으로 이동");
+        window.location.href = 'deliveryAdd';
+    });
+
+    $('moveHome').click(function () {
+        console.log("ChatLisg로 이동");
+        window.location.href = 'chatList'
+    }
 </script>
