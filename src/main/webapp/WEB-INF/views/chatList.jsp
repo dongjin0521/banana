@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <script src="https://kit.fontawesome.com/d07e833750.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/2f8ed7d291.js" crossorigin="anonymous"></script>
 <html>
 <head>
     <title>채팅 리스트</title>
@@ -100,7 +101,7 @@
     <div class="scrollable" id="allChats">
 
         <div class="chat-item">
-            <img src="images/rectangle_298.jpeg" alt="프로필 이미지">
+            <i class="fa-solid fa-user" style="font-size: 1.5rem;margin-right: 10px;margin-top: 5px"></i>
             <div class="content">
                 <div class="title">파슬리 조금만 나눠주실분 구합니다.</div>
                 <div class="userId">송희준</div>
@@ -130,7 +131,7 @@
                 chats.forEach(function(chat) {
                     var chatItem =
                         '<div class="chat-item" data-chat-id="' + chat["id"] + '">' +
-                        '<img src="images/rectangle_298.jpeg" alt="프로필 이미지">' +
+                        ' <i class="fa-solid fa-user" style="font-size: 1.5rem;margin-right: 10px;margin-top: 5px"></i>' +
                         '<div class="content">' +
                         '<div class="title">' + chat["title"] + '</div>' +
                         '<div class="userId">' + chat["user_id"] + '</div>' +
