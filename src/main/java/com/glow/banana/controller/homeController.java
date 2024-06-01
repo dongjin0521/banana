@@ -35,7 +35,8 @@ public class homeController {
     }
 
     @GetMapping("/chatForm")
-    public String chatForm(){
+    public String chatForm(@RequestParam(name = "id", required = false) String id, Model model){
+        model.addAttribute("id",id);
         return "chatForm";
     }
 

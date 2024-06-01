@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
+<script src="https://kit.fontawesome.com/d07e833750.js" crossorigin="anonymous"></script>
 <html>
 <head>
     <title>채팅 리스트</title>
@@ -28,11 +29,12 @@
         }
         .header {
             background-color: #ffffff;
-            padding: 54px 16px 33px;
+            padding: 24px 16px 24px;
             color: #000000;
             font-weight: bold;
             font-size: 24px;
             margin-bottom: 8px;
+            border-bottom: 2px solid #DDCA24; /* 경계선 추가 */
         }
         .chat-item {
             box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.052);
@@ -80,6 +82,7 @@
 <body>
 <div class="container">
     <div class="header">
+        <i class="fas fa-align-justify"></i>
         채팅목록</div>
     <div class="scrollable" id="allChats">
 
@@ -102,12 +105,9 @@
         $.ajax({
             type: "POST",
             url: "/chat/getChatAll",
-            data: {/* Any additional parameters you want to send */
-
-            },
+            data: {},
             success: function(response) {
                 console.log(response);
-                // Assuming response is a JSON array of chat objects
                 var chats = response;
                 var allChats = $('#allChats');
 
@@ -115,17 +115,21 @@
 
                 chats.forEach(function(chat) {
                     var chatItem =
-                        '<div id=' + chat["id"] + '></div>' +
-                        '<div class="chat-item">' +
+                        '<div class="chat-item" data-chat-id="' + chat["id"] + '">' +
                         '<img src="images/rectangle_298.jpeg" alt="프로필 이미지">' +
                         '<div class="content">' +
                         '<div class="title">' + chat["title"] + '</div>' +
                         '<div class="userId">' + chat["user_id"] + '</div>' +
                         '</div>' +
-                        '<div class="button" onclick=""></div>' +
-                        '</div>' +
+                        '<div class="button"></div>' +
                         '</div>';
                     allChats.append(chatItem);
+                });
+
+                $('.chat-item').on('click', function() {
+                    var chatId = $(this).data('chat-id');
+                    alert($(this).data('chat-id'))
+                    window.location.href = 'chatForm?id=' + chatId;
                 });
             },
             error: function(xhr, status, error) {
@@ -134,4 +138,4 @@
         });
     });
 </script>
-</html>
+
