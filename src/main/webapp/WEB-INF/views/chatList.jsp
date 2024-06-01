@@ -27,6 +27,19 @@
             min-width: 500px; /* 최소 너비 추가 */
             max-height: 700px; /* 최대 높이 추가 */
         }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 7px 10px;
+            background-color: #ffffff;
+            color: #DDCA24;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+        }
         .header {
             background-color: #ffffff;
             padding: 24px 16px 24px;
@@ -96,6 +109,7 @@
         </div>
 
     </div>
+    <a href='javascript:history.back()' class="back-button">back</a>
 </div>
 </body>
 
