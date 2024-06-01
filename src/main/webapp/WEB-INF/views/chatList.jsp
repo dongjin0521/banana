@@ -81,103 +81,17 @@
 <div class="container">
     <div class="header">
         채팅목록</div>
-    <div class="scrollable">
-        <div class="chat-item">
-            <img src="images/rectangle_298.jpeg" alt="프로필 이미지">
-            <div class="content">
-                <div class="title">안먹는 콜라 나눔합니다.</div>
-                <div class="username">전동환</div>
-            </div>
-            <div class="button" onclick="navigateToChat('chatDetail.jsp?id=1')"></div>
-        </div>
+    <div class="scrollable" id="allChats">
+
         <div class="chat-item">
             <img src="images/rectangle_298.jpeg" alt="프로필 이미지">
             <div class="content">
                 <div class="title">파슬리 조금만 나눠주실분 구합니다.</div>
-                <div class="username">송희준</div>
+                <div class="userId">송희준</div>
             </div>
-            <div class="button" onclick="navigateToChat('chatDetail.jsp?id=2')"></div>
+            <div class="button" onclick=""></div>
         </div>
-        <div class="chat-item">
-            <img src="images/rectangle_298.jpeg" alt="프로필 이미지">
-            <div class="content">
-                <div class="title">냉동식품 ~24/7 해외출장 나눔합니다.</div>
-                <div class="username">정해찬</div>
-            </div>
-            <div class="button" onclick="navigateToChat('chatDetail.jsp?id=3')"></div>
-        </div>
-        <div class="chat-item">
-            <img src="images/rectangle_298.jpeg" alt="프로필 이미지">
-            <div class="content">
-                <div class="title">양배추 남는거 있으신 분?</div>
-                <div class="username">이동진</div>
-            </div>
-            <div class="button" onclick="navigateToChat('chatDetail.jsp?id=4')"></div>
-        </div>
-        <div class="chat-item">
-            <img src="images/rectangle_298.jpeg" alt="프로필 이미지">
-            <div class="content">
-                <div class="title">냉동식품 ~24/7 해외출장 나눔합니다.</div>
-                <div class="username">정해찬</div>
-            </div>
-            <div class="button" onclick="navigateToChat('chatDetail.jsp?id=3')"></div>
-        </div>
-        <div class="chat-item">
-            <img src="images/rectangle_298.jpeg" alt="프로필 이미지">
-            <div class="content">
-                <div class="title">냉동식품 ~24/7 해외출장 나눔합니다.</div>
-                <div class="username">정해찬</div>
-            </div>
-            <div class="button" onclick="navigateToChat('chatDetail.jsp?id=3')"></div>
-        </div>
-        <div class="chat-item">
-            <img src="images/rectangle_298.jpeg" alt="프로필 이미지">
-            <div class="content">
-                <div class="title">냉동식품 ~24/7 해외출장 나눔합니다.</div>
-                <div class="username">정해찬</div>
-            </div>
-            <div class="button" onclick="navigateToChat('chatDetail.jsp?id=3')"></div>
-        </div>
-        <div class="chat-item">
-            <img src="images/rectangle_298.jpeg" alt="프로필 이미지">
-            <div class="content">
-                <div class="title">냉동식품 ~24/7 해외출장 나눔합니다.</div>
-                <div class="username">정해찬</div>
-            </div>
-            <div class="button" onclick="navigateToChat('chatDetail.jsp?id=3')"></div>
-        </div>
-        <div class="chat-item">
-            <img src="images/rectangle_298.jpeg" alt="프로필 이미지">
-            <div class="content">
-                <div class="title">냉동식품 ~24/7 해외출장 나눔합니다.</div>
-                <div class="username">정해찬</div>
-            </div>
-            <div class="button" onclick="navigateToChat('chatDetail.jsp?id=3')"></div>
-        </div>
-        <div class="chat-item">
-            <img src="images/rectangle_298.jpeg" alt="프로필 이미지">
-            <div class="content">
-                <div class="title">냉동식품 ~24/7 해외출장 나눔합니다.</div>
-                <div class="username">정해찬</div>
-            </div>
-            <div class="button" onclick="navigateToChat('chatDetail.jsp?id=3')"></div>
-        </div>
-        <div class="chat-item">
-            <img src="images/rectangle_298.jpeg" alt="프로필 이미지">
-            <div class="content">
-                <div class="title">냉동식품 ~24/7 해외출장 나눔합니다.</div>
-                <div class="username">정해찬</div>
-            </div>
-            <div class="button" onclick="navigateToChat('chatDetail.jsp?id=3')"></div>
-        </div>
-        <div class="chat-item">
-            <img src="images/rectangle_298.jpeg" alt="프로필 이미지">
-            <div class="content">
-                <div class="title">냉동식품 ~24/7 해외출장 나눔합니다.</div>
-                <div class="username">정해찬</div>
-            </div>
-            <div class="button" onclick="navigateToChat('chatDetail.jsp?id=3')"></div>
-        </div>
+
     </div>
 </div>
 </body>
@@ -192,18 +106,26 @@
 
             },
             success: function(response) {
-                var productList = response;
-                console.log(productList);
-                // Loop through the product list and generate HTML for each product card
-                productList.forEach(function(product) {
-                    var productCardHtml = '<div class="product-card item" id="' + product["id"] + '" >';
-                    productCardHtml += '<img class="delivery-img" src="' + product["image"] + '" alt="' + product["title"] + '">';
-                    productCardHtml += '<div class="header"><p>' + product["title"] + '</p></div>';
-                    productCardHtml += '<div class="description">' + product["description"] + '</div>';
-                    productCardHtml += '<div class="meta">' + product["loc1"] + " "  + product["loc2"] + " " + product["name"] + '</div>';
-                    productCardHtml += '</div>';
+                console.log(response);
+                // Assuming response is a JSON array of chat objects
+                var chats = response;
+                var allChats = $('#allChats');
 
-                    $('#product-list').append(productCardHtml);
+                allChats.empty(); // Clear existing chat items
+
+                chats.forEach(function(chat) {
+                    var chatItem =
+                        '<div id=' + chat["id"] + '></div>' +
+                        '<div class="chat-item">' +
+                        '<img src="images/rectangle_298.jpeg" alt="프로필 이미지">' +
+                        '<div class="content">' +
+                        '<div class="title">' + chat["title"] + '</div>' +
+                        '<div class="userId">' + chat["user_id"] + '</div>' +
+                        '</div>' +
+                        '<div class="button" onclick=""></div>' +
+                        '</div>' +
+                        '</div>';
+                    allChats.append(chatItem);
                 });
             },
             error: function(xhr, status, error) {

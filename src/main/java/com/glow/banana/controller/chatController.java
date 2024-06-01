@@ -62,13 +62,17 @@ public class chatController {
         HttpSession session = request.getSession();
         String userId = (String) session.getAttribute("userId");
 
+        Map<String, Object> paramMap = new HashMap<>(allParams);
+
         if (userId != null) {
             System.out.println("logged in. userId: "+userId);
+            paramMap.put("userId",userId);
         } else {
             System.out.println("No user is logged in");
+            return null;
         }
 
-        Map<String, Object> paramMap = new HashMap<>(allParams);
+
         // 앞단에서 지역 등 조건 필터링을 allParams 로 넘겨받음.
         // 앞단에서 가져온 변수 이외에도 필요한 매개변수를 paramMap에 추가할 수 있습니다.
         // 예: paramMap.put("key", "value");
