@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <script src="https://kit.fontawesome.com/d07e833750.js" crossorigin="anonymous"></script>
-<script src="https://kit.fontawesome.com/2f8ed7d291.js" crossorigin="anonymous"></script>
 <html>
 <head>
     <title>채팅 리스트</title>
@@ -99,15 +98,6 @@
         <i class="fas fa-align-justify"></i>
         채팅목록</div>
     <div class="scrollable" id="allChats">
-
-        <div class="chat-item">
-            <i class="fa-solid fa-user" style="font-size: 1.5rem;margin-right: 10px;margin-top: 5px"></i>
-            <div class="content">
-                <div class="title">파슬리 조금만 나눠주실분 구합니다.</div>
-                <div class="userId">송희준</div>
-            </div>
-            <div class="button" onclick=""></div>
-        </div>
 
     </div>
     <a href='javascript:history.back()' class="back-button">back</a>

@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
+<script src="https://kit.fontawesome.com/d07e833750.js" crossorigin="anonymous"></script>
 <html>
 <head>
-    <title>채팅 리스트</title>
+    <title>채팅</title>
     <style>
         body {
             margin: 0;
@@ -23,8 +24,8 @@
             display: flex;
             flex-direction: column;
             height: 800px;
-            min-width: 500px;
-            max-height: 700px;
+            min-width: 500px; /* 최소 너비 추가 */
+            max-height: 700px; /* 최대 높이 추가 */
         }
         .back-button {
             position: absolute;
@@ -39,13 +40,46 @@
             font-size: 20px;
             cursor: pointer;
         }
+        .post-button {
+            background-color: #ffffff;
+            padding: 14px 16px;
+            color: #000000;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 8px;
+            border: 2px solid #DDCA24;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            text-align: left;
+        }
+        .post-button img {
+            width: 37px;
+            height: 37px;
+            border-radius: 5px;
+        }
+        .post-button .content {
+            flex: 1;
+            margin-left: 10px;
+        }
+        .post-button .content .title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #212121;
+            margin-bottom: 3px;
+        }
+        .post-button .content .username {
+            font-size: 14px;
+            font-weight: bold;
+            color: #DDCA24;
+        }
         .chat-box {
             box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.052);
             border-radius: 8px;
             background-color: #FFFFFF;
-            margin-bottom: 6px;
             padding: 14px 16px;
-            height: 100%;
+            height: calc(100% - 150px); /* Adjust based on post button and padding */
             overflow-y: auto; /* 스크롤바 추가 */
         }
         .chat-item {
@@ -94,7 +128,14 @@
     </style>
 </head>
 <body>
+<div id="chatList" data-id="${id}"></div>
 <div class="container">
+    <button class="post-button" onclick="window.location.href='/clickForm?id=${id}'">
+        <i class="fa-solid fa-arrow-up"></i>
+        <div class="content">
+            <div class="title">게시글 보기</div>
+        </div>
+    </button>
     <div class="chat-box" id="chatBox">
         <!-- 채팅 아이템은 여기 추가됩니다 -->
     </div>
@@ -109,57 +150,63 @@
 </div>
 </body>
 
-<div id="chatList" data-id="${id}"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
     var productId = $("#chatList").data("id");
     $(document).ready(function() {
-        $.ajax({
-            type: "POST",
-            url: "/chat/getChat",
-            data: {
-                id: productId
-            },
-            success: function(response) {
-                var chatList = response;
-                console.log(chatList);
-                if (chatList.length > 0) {
-                    chatList.forEach(function(chat) {
-                        var chatItemHtml = '<div class="chat-item">';
-                        chatItemHtml += '<div class="username">' + chat["userId"] + '</div>';
-                        chatItemHtml += '<div class="message">' + chat["message"] + '</div>';
-                        chatItemHtml += '</div>';
-                        $('#chatBox').append(chatItemHtml);
-                    });
-                } else {
-                    $('#chatBox').append('<div class="chat-item"><div class="message">채팅 내용이 없습니다.</div></div>');
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error("ajax 호출 error 발생");
-            }
-        });
-    });
-
-    $("#submit").on("click", function() {
-        var message = $("#commentInput").val();
-        if (message.trim() !== "") {
+        function loadChat() {
             $.ajax({
                 type: "POST",
-                url: "/chat/insertChat",
+                url: "/chat/getChat",
                 data: {
-                    message : message,
-                    productId : productId
+                    id: productId
                 },
                 success: function(response) {
-                    location.reload();
+                    var chatList = response;
+                    console.log(chatList);
+                    $('#chatBox').empty(); // 기존 채팅 내용 비우기
+                    if (chatList.length > 0) {
+                        chatList.forEach(function(chat) {
+                            var chatItemHtml = '<div class="chat-item">';
+                            chatItemHtml += '<div class="username">' + chat["userId"] + '</div>';
+                            chatItemHtml += '<div class="message">' + chat["message"] + '</div>';
+                            chatItemHtml += '</div>';
+                            $('#chatBox').append(chatItemHtml);
+                        });
+                    } else {
+                        $('#chatBox').append('<div class="chat-item"><div class="message">채팅 내용이 없습니다.</div></div>');
+                    }
                 },
                 error: function(xhr, status, error) {
                     console.error("ajax 호출 error 발생");
                 }
             });
         }
+
+        loadChat(); // 페이지 로드 시 처음 한번 실행
+        setInterval(loadChat, 5000); // 5초마다 새로고침
+
+        $("#submit").on("click", function() {
+            var message = $("#commentInput").val();
+            if (message.trim() !== "") {
+                $.ajax({
+                    type: "POST",
+                    url: "/chat/insertChat",
+                    data: {
+                        message : message,
+                        productId : productId
+                    },
+                    success: function(response) {
+                        $("#commentInput").val(''); // 입력 필드 비우기
+                        loadChat(); // 채팅 내용을 즉시 업데이트
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("ajax 호출 error 발생");
+                    }
+                });
+            }
+        });
     });
 </script>
 </html>

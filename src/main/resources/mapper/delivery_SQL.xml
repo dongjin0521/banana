@@ -26,14 +26,16 @@
         LOC2,
         TITLE,
         DESCRIPTION,
-        POST_DATE
+        POST_DATE,
+        IMG_NAME
         )VALUES(
         #{userId},
         #{loc1},
         #{loc2},
         #{title},
         #{description},
-        now()
+        now(),
+        #{imgName}
         <selectKey keyProperty="id" order="AFTER" resultType="int">
             SELECT LAST_INSERT_ID()
         </selectKey>
