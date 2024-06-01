@@ -139,12 +139,20 @@
     <div class="location_select">
         <label for="big_location" class="visually-hidden"></label>
         <select id="big_location">
-            <option value="daegu">대구</option>
+            <option value="대구">대구</option>
             <!-- Add more options as needed -->
         </select>
         <label for="small_location" class="visually-hidden"></label>
         <select id="small_location">
-            <option value="none">지역선택</option>
+            <option value="">지역선택</option>
+            <option value="중구">중구</option>
+            <option value="동구">동구</option>
+            <option value="서구">서구</option>
+            <option value="남구">남구</option>
+            <option value="북구">북구</option>
+            <option value="수성구">수성구</option>
+            <option value="달서구">달서구</option>
+            <option value="달성군">달성군</option>
             <!-- Add more options as needed -->
         </select>
     </div>
@@ -171,11 +179,14 @@
             type: "POST",
             url: "/delivery/getDeliveryList",
             data: {/* Any additional parameters you want to send */
-                loc1 : "대구"
+                loc1 : $("#big_location").val(),
+                loc2 : $("#small_location").val(),
+                title : $("#search").val()
                 },
             success: function(response) {
                 var productList = response;
                 console.log(productList);
+                $('#product-list').empty();
                 // Loop through the product list and generate HTML for each product card
                 productList.forEach(function(product) {
                     var productCardHtml = '<div class="product-card item" id="' + product["id"] + '" >';
@@ -212,18 +223,32 @@
     });
 
     $('#search-button').click(function() {
-        var searchQuery = $('#search').val();
         $.ajax({
-            url: 'https://example.com/api/search',
-            type: 'GET',
-            dataType: 'json',
-            data: { title: searchQuery },
+            type: "POST",
+            url: "/delivery/getDeliveryList",
+            data: {/* Any additional parameters you want to send */
+                loc1 : $("#big_location").val(),
+                loc2 : $("#small_location").val(),
+                title : $("#search").val()
+            },
             success: function(response) {
-                console.log(response);
-                // 받은 데이터를 처리하는 코드 추가
+                var productList = response;
+                console.log(productList);
+                $('#product-list').empty();
+                // Loop through the product list and generate HTML for each product card
+                productList.forEach(function(product) {
+                    var productCardHtml = '<div class="product-card item" id="' + product["id"] + '" >';
+                    productCardHtml += '<img class="delivery-img" src="' + product["image"] + '" alt="' + product["title"] + '">';
+                    productCardHtml += '<div class="header"><p>' + product["title"] + '</p></div>';
+                    productCardHtml += '<div class="description">' + product["description"] + '</div>';
+                    productCardHtml += '<div class="meta">' + product["loc1"] + " "  + product["loc2"] + " " + product["name"] + '</div>';
+                    productCardHtml += '</div>';
+
+                    $('#product-list').append(productCardHtml);
+                });
             },
             error: function(xhr, status, error) {
-                console.error('Error: ' + error);
+                console.error("ajax 호출 error 발생");
             }
         });
     });

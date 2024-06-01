@@ -8,8 +8,14 @@
         <if test="loc1 != null and loc1 != ''">
             AND loc1 = #{loc1}
         </if>
+        <if test="loc2 != null and loc2 != ''">
+            AND loc2 = #{loc2}
+        </if>
         <if test="id != null and id != ''">
             AND id = #{id}
+        </if>
+        <if test="title != null and title != ''">
+            AND title LIKE CONCAT('%', #{title}, '%')
         </if>
     </select>
 
