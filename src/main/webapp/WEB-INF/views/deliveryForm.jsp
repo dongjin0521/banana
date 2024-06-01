@@ -35,8 +35,9 @@
         .search_title {
             color: white;
             font-weight: bold;
-            font-size: 3.5vw;
+            font-size: 3rem;
             align-self: flex-start;
+            margin: 0 0 0 2rem;
         }
 
         .search_box {
@@ -45,7 +46,7 @@
             width: 80%;
             background: white;
             border-radius: 25px;
-            padding: 20px;
+            padding: 1rem;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -53,7 +54,7 @@
             border: none;
             outline: none;
             width: 100%;
-            padding: 10px;
+            padding: 0.5rem;
             font-size: 1em;
             border-radius: 25px;
         }
@@ -67,10 +68,10 @@
         .location_select select {
             border: none;
             outline: none;
-            padding: 10px;
+            padding: 1em;
             font-size: 1em;
             border-radius: 25px;
-            margin-right: 10px;
+            margin-right: 1.5rem;
             background: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
